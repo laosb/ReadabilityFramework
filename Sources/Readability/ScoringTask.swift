@@ -20,7 +20,7 @@ public class RAScoringTask {
     .fleschKincaidGrade: RAFleschKincaidGradeScorer.self
   ]
 
-  public var scorersToRun: Set<Scorer> = Set(Scorer.allCases)
+  public var scorersToRun: Set<Scorer>
 
   /** Derived from `scorersToRun`. */
   public var scorers: [Scorer: RAScorer.Type] {
@@ -39,6 +39,10 @@ public class RAScoringTask {
         guard let metrics = scorerMetrics else { return partialResult }
         return partialResult.union(metrics)
       }
+  }
+
+  public init(scorers: Set<Scorer> = Set(Scorer.allCases)) {
+    self.scorersToRun = scorers
   }
 
   public func run(on text: String) -> Results {

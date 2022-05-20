@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 public struct RAScorerMeta {
-  let name: String
-  let creator: String
+  public let name: String
+  public let creator: String
   /** Should be in APA format. */
-  let citation: String
+  public let citation: String
 }
 
 public protocol RAScorer {
