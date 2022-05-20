@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ColemanLiauIndex.swift
 //  
 //
 //  Created by Shibo Lyu on 2022/5/20.
@@ -15,7 +15,7 @@ public struct RAColemanLiauIndexScorer: RAScorer {
   ]
 
   public static let meta = RAScorerMeta(
-    name: "Coleman–Liau Index",
+    name: "Coleman-Liau Index",
     creator: "Meri Coleman & T. L. Liau",
     citation: "Coleman, M., & Liau, T. L. (1975). A computer readability formula designed for machine scoring. Journal of Applied Psychology, 60(2), 283."
   )

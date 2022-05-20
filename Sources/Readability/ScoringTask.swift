@@ -14,12 +14,14 @@ public class RAScoringTask {
     case fleschReadingEase
     case fleschKincaidGrade
     case colemanLiauIndex
+    case automatedReadabilityIndex
   }
 
   public static let availableScorers: [Scorer: RAScorer.Type] = [
     .fleschReadingEase: RAFleschReadingEaseScorer.self,
     .fleschKincaidGrade: RAFleschKincaidGradeScorer.self,
-    .colemanLiauIndex: RAColemanLiauIndexScorer.self
+    .colemanLiauIndex: RAColemanLiauIndexScorer.self,
+    .automatedReadabilityIndex: RAAutomatedReadabilityIndexScorer.self
   ]
 
   public var scorersToRun: Set<Scorer>
