@@ -12,6 +12,7 @@ final class CommonMetrics: XCTestCase {
 
   func testAllMetrics() throws {
     let calc = RACommonMetricsCalculator(metrics: [
+      .characterCount,
       .syllableCount,
       .wordCount,
       .sentenceCount,
@@ -22,6 +23,7 @@ final class CommonMetrics: XCTestCase {
     let results = calc.calculate(on: "Hello, World!")
 
     XCTAssertEqual(results, [
+      .characterCount: 10.0,
       .syllableCount: 3.0,
       .wordCount: 2.0,
       .sentenceCount: 1.0,
