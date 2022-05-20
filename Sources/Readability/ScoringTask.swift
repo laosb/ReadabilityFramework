@@ -13,11 +13,13 @@ public class RAScoringTask {
   public enum Scorer: Hashable, CaseIterable, Comparable {
     case fleschReadingEase
     case fleschKincaidGrade
+    case colemanLiauIndex
   }
 
   public static let availableScorers: [Scorer: RAScorer.Type] = [
     .fleschReadingEase: RAFleschReadingEaseScorer.self,
-    .fleschKincaidGrade: RAFleschKincaidGradeScorer.self
+    .fleschKincaidGrade: RAFleschKincaidGradeScorer.self,
+    .colemanLiauIndex: RAColemanLiauIndexScorer.self
   ]
 
   public var scorersToRun: Set<Scorer>

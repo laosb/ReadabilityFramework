@@ -12,6 +12,7 @@ public enum RACommonMetric {
   case sentenceCount
   case wordCount
   case syllableCount
+  case characterCount
   case avgWordsPerSentence
   case avgSyllablesPerWord
 }
@@ -20,6 +21,8 @@ public struct RACommonMetricsCalculator {
   public typealias Results = [RACommonMetric: Double]
 
   private var metrics: Set<RACommonMetric>
+
+  private static let excludeCharacters: [Character] = ["-", "'"]
 
   public init(metrics: Set<RACommonMetric>) {
     self.metrics = metrics
@@ -34,11 +37,14 @@ public struct RACommonMetricsCalculator {
     let shouldDoWords = metrics.contains(.wordCount)
       || metrics.contains(.avgWordsPerSentence)
       || metrics.contains(.avgSyllablesPerWord)
+      || metrics.contains(.characterCount)
     let shouldCountSyllables = metrics.contains(.avgSyllablesPerWord) || metrics.contains(.syllableCount)
+    let shouldCountCharacters = metrics.contains(.characterCount)
 
     var sentenceCount = 0
     var wordCount = 0
     var syllableCount = 0
+    var characterCount = 0
 
     if shouldDoSentences {
       sentenceCount = RATokenizer(text, unit: .sentence).enumerateTokens { _ in }
@@ -46,12 +52,15 @@ public struct RACommonMetricsCalculator {
 
     if shouldDoWords {
       let tokenizer = RATokenizer(text, unit: .word)
-      if shouldCountSyllables {
-        wordCount = tokenizer.enumerateTokens { word in
+      wordCount = tokenizer.enumerateTokens { word in
+        if shouldCountSyllables {
           syllableCount += countSyllables(word: word)
         }
-      } else {
-        wordCount = tokenizer.enumerateTokens { _ in }
+        if shouldCountCharacters {
+          characterCount += word
+            .filter { !Self.excludeCharacters.contains($0) }
+            .count
+        }
       }
     }
 
@@ -62,6 +71,7 @@ public struct RACommonMetricsCalculator {
       case .syllableCount: value = Double(syllableCount)
       case .sentenceCount: value = Double(sentenceCount)
       case .wordCount: value = Double(wordCount)
+      case .characterCount: value = Double(characterCount)
       case .avgWordsPerSentence: value = Double(wordCount) / Double(sentenceCount)
       case .avgSyllablesPerWord: value = Double(syllableCount) / Double(wordCount)
       }
