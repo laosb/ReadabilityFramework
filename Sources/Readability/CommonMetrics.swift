@@ -17,11 +17,11 @@ public enum RACommonMetric {
 }
 
 public struct RACommonMetricsCalculator {
-  typealias Results = [RACommonMetric: Double]
+  public typealias Results = [RACommonMetric: Double]
 
   private var metrics: Set<RACommonMetric>
 
-  init(metrics: Set<RACommonMetric>) {
+  public init(metrics: Set<RACommonMetric>) {
     self.metrics = metrics
   }
 
@@ -29,7 +29,7 @@ public struct RACommonMetricsCalculator {
     SyllableCounter.shared.count(word: word)
   }
 
-  func calculate(on text: String) -> Results {
+  public func calculate(on text: String) -> Results {
     let shouldDoSentences = metrics.contains(.sentenceCount) || metrics.contains(.avgWordsPerSentence)
     let shouldDoWords = metrics.contains(.wordCount)
       || metrics.contains(.avgWordsPerSentence)

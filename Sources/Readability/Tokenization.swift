@@ -14,7 +14,7 @@ public struct RATokenizer {
 
   private var tokenizer: NLTokenizer
 
-  init (_ text: String, unit: NLTokenUnit, language: NLLanguage? = nil) {
+  public init (_ text: String, unit: NLTokenUnit, language: NLLanguage? = nil) {
     self.text = text
     self.unit = unit
     tokenizer = NLTokenizer(unit: unit)
@@ -24,8 +24,8 @@ public struct RATokenizer {
     tokenizer.string = text
   }
 
-  /** Returns token count. */
-  func enumerateTokens(using callBack: (String) -> Void) -> Int {
+  /** - Returns: Token count. */
+  public func enumerateTokens(using callBack: (String) -> Void) -> Int {
     var tokenCount = 0
     tokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { range, _ in
       tokenCount += 1

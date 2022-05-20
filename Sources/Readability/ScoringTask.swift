@@ -8,21 +8,22 @@
 import Foundation
 
 public class RAScoringTask {
-  typealias Results = [Scorer: Double]
+  public typealias Results = [Scorer: Double]
 
-  enum Scorer: Hashable, CaseIterable, Comparable {
+  public enum Scorer: Hashable, CaseIterable, Comparable {
     case fleschReadingEase
     case fleschKincaidGrade
   }
 
-  static let availableScorers: [Scorer: RAScorer.Type] = [
+  public static let availableScorers: [Scorer: RAScorer.Type] = [
     .fleschReadingEase: RAFleschReadingEaseScorer.self,
     .fleschKincaidGrade: RAFleschKincaidGradeScorer.self
   ]
 
-  var scorersToRun: Set<Scorer> = Set(Scorer.allCases)
+  public var scorersToRun: Set<Scorer> = Set(Scorer.allCases)
 
-  var scorers: [Scorer: RAScorer.Type] {
+  /** Derived from `scorersToRun`. */
+  public var scorers: [Scorer: RAScorer.Type] {
     scorersToRun.reduce([:]) { partialResult, scorer in
       var d = partialResult
       d[scorer] = Self.availableScorers[scorer]!
@@ -30,7 +31,8 @@ public class RAScoringTask {
     }
   }
 
-  var commonMetricsToGet: Set<RACommonMetric> {
+  /** Derived from `scorersToRun`. */
+  public var commonMetricsToGet: Set<RACommonMetric> {
     scorers
       .map { $0.1.requiresCommonMetrics }
       .reduce([]) { partialResult, scorerMetrics in
@@ -39,7 +41,7 @@ public class RAScoringTask {
       }
   }
 
-  func run(on text: String) -> Results {
+  public func run(on text: String) -> Results {
     var commonMetrics: RACommonMetricsCalculator.Results? = nil
 
     if !commonMetricsToGet.isEmpty {
