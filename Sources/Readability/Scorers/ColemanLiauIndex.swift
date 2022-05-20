@@ -28,7 +28,6 @@ public struct RAColemanLiauIndexScorer: RAScorer {
     let l = metrics![.characterCount]! * 100 / wordCount
     let s = metrics![.sentenceCount]! * 100 / wordCount
 
-    let cloze = 141.8401 - (0.214590 * l) + (1.079812 * s)
-    return (-27.4004 * cloze) + 23.06395
+    return (0.0588 * l) - (0.296 * s) - 15.8
   }
 }
