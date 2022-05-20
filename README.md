@@ -1,3 +1,3 @@
-# ReadabilityFramework
+# Readability.framework
 
-A description of this package.
+A package that provides the calculation of common readability metrics.
