@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RAScoringTask {
+public class RAScoringTask {
   typealias Results = [Scorer: Double]
 
   enum Scorer: Hashable, CaseIterable, Comparable {

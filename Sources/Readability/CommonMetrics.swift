@@ -8,7 +8,7 @@
 import Foundation
 import SyllableCounter
 
-enum RACommonMetric {
+public enum RACommonMetric {
   case sentenceCount
   case wordCount
   case syllableCount
@@ -16,7 +16,7 @@ enum RACommonMetric {
   case avgSyllablesPerWord
 }
 
-struct RACommonMetricsCalculator {
+public struct RACommonMetricsCalculator {
   typealias Results = [RACommonMetric: Double]
 
   private var metrics: Set<RACommonMetric>

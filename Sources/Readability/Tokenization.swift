@@ -8,7 +8,7 @@
 import Foundation
 import NaturalLanguage
 
-struct RATokenizer {
+public struct RATokenizer {
   private var unit: NLTokenUnit
   private var text: String
 

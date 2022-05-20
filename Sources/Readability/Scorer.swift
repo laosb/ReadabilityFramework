@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct RAScorerMeta {
+public struct RAScorerMeta {
   let name: String
   let creator: String
   /** Should be in APA format. */
   let citation: String
 }
 
-protocol RAScorer {
+public protocol RAScorer {
   static var meta: RAScorerMeta { get }
   static var requiresCommonMetrics: Set<RACommonMetric>? { get }
 

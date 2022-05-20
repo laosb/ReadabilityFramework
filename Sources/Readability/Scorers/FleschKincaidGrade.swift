@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RAFleschKincaidGradeScorer: RAScorer {
+public struct RAFleschKincaidGradeScorer: RAScorer {
   static let requiresCommonMetrics: Set<RACommonMetric>? = [
     .avgWordsPerSentence,
     .avgSyllablesPerWord

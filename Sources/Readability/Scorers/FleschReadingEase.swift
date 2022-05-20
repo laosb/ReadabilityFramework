@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RAFleschReadingEaseScorer: RAScorer {
+public struct RAFleschReadingEaseScorer: RAScorer {
   static let requiresCommonMetrics: Set<RACommonMetric>? = [
     .avgWordsPerSentence,
     .avgSyllablesPerWord
